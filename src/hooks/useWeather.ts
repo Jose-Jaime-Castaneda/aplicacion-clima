@@ -37,9 +37,11 @@ export default function useWeather() {
       temp_min: 0,
     },
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchWeather = async (search: SearchType) => {
     const appID = import.meta.env.VITE_APIKEY;
+    setIsLoading(true);
     try {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appID}`;
 
@@ -62,6 +64,8 @@ export default function useWeather() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +73,7 @@ export default function useWeather() {
 
   return {
     weather,
+    isLoading,
     fetchWeather,
     hasWeatherData,
   };

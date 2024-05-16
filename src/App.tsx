@@ -5,7 +5,7 @@ import useWeather from "./hooks/useWeather"
 
 function App() {
 
-  const { weather, fetchWeather, hasWeatherData } = useWeather()
+  const { weather, isLoading, fetchWeather, hasWeatherData } = useWeather()
   return (
     <>
       <h1 className={styles.title}>Buscador de clima</h1>
@@ -15,7 +15,11 @@ function App() {
           fetchWeather={fetchWeather}
         />
 
-        {hasWeatherData && (
+        {isLoading && (
+          <p>Cargando...</p>
+        )}
+
+        {hasWeatherData && !isLoading && (
           <WeatherDetail
             weather={weather}
           />
