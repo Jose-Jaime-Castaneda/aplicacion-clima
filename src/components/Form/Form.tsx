@@ -2,12 +2,14 @@ import { ChangeEvent, useState } from "react";
 import { countries } from "../../data/countries";
 import styles from './Form.module.css'
 import { SearchType } from "../../types";
+import Alert from "../Alert/Alert";
 
 export default function Form() {
     const [search, setSearch] = useState<SearchType>({
         city: '',
         country: '',
     })
+    const [alert, setAlert] = useState('');
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         setSearch({
@@ -20,14 +22,16 @@ export default function Form() {
         e.preventDefault();
 
         if (Object.values(search).includes('')) {
-            console.log('Hay campos vacíos');
+            setAlert('Todos los campos son obligatorios')
+            return
         }
 
-        
+
     }
 
     return (
         <form className={styles.form} onSubmit={hanldeSubmit}>
+            {alert && <Alert>{alert}</Alert>}
 
             <div className={styles.field}>
                 <label htmlFor="city">Cuidad:</label>
