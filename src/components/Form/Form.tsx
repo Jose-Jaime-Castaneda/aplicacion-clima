@@ -30,7 +30,7 @@ export default function Form({ fetchWeather }: FormProps) {
             return
         }
 
-
+        fetchWeather();
     }
 
     return (
