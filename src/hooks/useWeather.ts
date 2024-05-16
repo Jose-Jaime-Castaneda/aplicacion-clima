@@ -48,7 +48,7 @@ export default function useWeather() {
       const lat = data[0].lat;
       const lon = data[0].lon;
 
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}%appid=${appID}`;
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appID}`;
 
       const { data: weatherResult } = await axios(weatherUrl);
       // zod
@@ -70,6 +70,6 @@ export default function useWeather() {
   return {
     weather,
     fetchWeather,
-    hasWeatherData
+    hasWeatherData,
   };
 }
