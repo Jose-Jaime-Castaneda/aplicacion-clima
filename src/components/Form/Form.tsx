@@ -21,8 +21,9 @@ export default function Form() {
 
         if (Object.values(search).includes('')) {
             console.log('Hay campos vacíos');
-
         }
+
+        
     }
 
     return (
