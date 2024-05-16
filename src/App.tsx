@@ -17,10 +17,10 @@ function App() {
         />
 
         {isLoading && (
-          <Spinners />
+          <Spinners/>
         )}
 
-        {hasWeatherData && !isLoading && (
+        {hasWeatherData && (
           <WeatherDetail
             weather={weather}
           />

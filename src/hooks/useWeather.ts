@@ -4,6 +4,15 @@ import { z } from "zod";
 import { SearchType } from "../types";
 import { useMemo, useState } from "react";
 
+const INITIAL_STATE = {
+  name: "",
+  main: {
+    temp: 0,
+    temp_max: 0,
+    temp_min: 0,
+  },
+};
+
 // zod
 const Weather = z.object({
   name: z.string(),
@@ -29,19 +38,13 @@ export type Weather = z.infer<typeof Weather>;
 type Weather = Output<typeof WeatherSchema>; */
 
 export default function useWeather() {
-  const [weather, setWeather] = useState<Weather>({
-    name: "",
-    main: {
-      temp: 0,
-      temp_max: 0,
-      temp_min: 0,
-    },
-  });
+  const [weather, setWeather] = useState<Weather>(INITIAL_STATE);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchWeather = async (search: SearchType) => {
     const appID = import.meta.env.VITE_APIKEY;
     setIsLoading(true);
+    setWeather(INITIAL_STATE);
     try {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appID}`;
 
