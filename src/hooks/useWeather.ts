@@ -2,7 +2,7 @@ import axios from "axios";
 import { z } from "zod";
 //import { object, string, number, Output, parse } from "valibot";
 import { SearchType } from "../types";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 // zod
 const Weather = z.object({
@@ -65,8 +65,11 @@ export default function useWeather() {
     }
   };
 
+  const hasWeatherData = useMemo(() => weather.name.length > 0, [weather.name]);
+
   return {
     weather,
     fetchWeather,
+    hasWeatherData
   };
 }
