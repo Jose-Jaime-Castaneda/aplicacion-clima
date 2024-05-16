@@ -1,5 +1,6 @@
 import styles from "./App.module.css"
 import Form from "./components/Form/Form"
+import Spinners from "./components/Spinner/Spinners"
 import WeatherDetail from "./components/WeatherDetail/WeatherDetail"
 import useWeather from "./hooks/useWeather"
 
@@ -16,7 +17,7 @@ function App() {
         />
 
         {isLoading && (
-          <p>Cargando...</p>
+          <Spinners />
         )}
 
         {hasWeatherData && !isLoading && (

@@ -1,3 +1,5 @@
+import './Spinner.css'
+
 export default function Spinners() {
     return (
         <div className="sk-cube-grid">
