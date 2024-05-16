@@ -16,8 +16,17 @@ export default function Form() {
         })
     }
 
+    const hanldeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (Object.values(search).includes('')) {
+            console.log('Hay campos vacíos');
+
+        }
+    }
+
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={hanldeSubmit}>
 
             <div className={styles.field}>
                 <label htmlFor="city">Cuidad:</label>
